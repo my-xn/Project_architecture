@@ -1,0 +1,69 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for header */
+header {
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
+}
+
+/* Style for buttons */
+button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Style for main content area */
+main {
+    padding: 20px;
+}
+
+/* 更新侧边栏样式 */
+.sidebar {
+    background-color: #eee;
+    width: 200px;
+    padding: 10px;
+    position: absolute;
+    top: 40px; /* 与头部的高度相同 */
+    bottom: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 更新关闭按钮样式 */
+.closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* 收起侧边栏 */
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+/* 放置左右侧边栏 */
+#leftSidebar {
+    left: 0;
+}
+
+#rightSidebar {
+    right: 0;
+}
+
+/* 容器样式 */
+.container {
+    position: relative;
+}
