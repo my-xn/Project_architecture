@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Webpage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 下拉框样式 */
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown button:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
-            <button id="button1">Button 1</button>
-            <button id="button2">Button 2</button>
-            <button id="button3">Button 3</button>
-            <button id="button4">Button 4</button>
-            <button id="button5">Button 5</button>
+            <button id="button1">居住点</button>
+            <button id="button2">工作点</button>
+            <button id="button3">游憩点</button>
+            <div id="dropdown3" class="dropdown">
+                <button onclick="readCSV()">绿地游憩行为点</button>
+                <button onclick="readCSV()">生活服务行为点</button>
+                <button onclick="readCSV()">休闲娱乐行为点</button>
+            </div>
+            <button id="button4">通勤廊道</button>
+            <button id="button5">游憩廊道</button>
+            <div id="dropdown5" class="dropdown">
+                <button onclick="readCSV()">绿地游憩廊道</button>
+                <button onclick="readCSV()">生活服务廊道</button>
+                <button onclick="readCSV()">休闲娱乐廊道</button>
+            
+            </div>
         </nav>
     </header>
 
@@ -39,6 +77,9 @@
         </aside>
     </div>
 
+    <input type="file" id="fileInput" style="display:none" accept=".csv"/>
+
     <script src="script.js"></script>
 </body>
 </html>
+

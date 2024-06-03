@@ -1,42 +1,76 @@
-// 获取按钮元素
-const button1 = document.getElementById('button1');
-const button2 = document.getElementById('button2');
-const button3 = document.getElementById('button3');
-const button4 = document.getElementById('button4');
-const button5 = document.getElementById('button5');
+// 全局变量，用于存储CSV内容
+let csvData = '';
 
-// 获取侧边栏元素
-const leftSidebar = document.getElementById('leftSidebar');
-const rightSidebar = document.getElementById('rightSidebar');
+document.addEventListener('DOMContentLoaded', function() {
+    const button3 = document.getElementById('button3');
+    const button5 = document.getElementById('button5');
 
-// 给按钮添加点击事件处理程序
-button1.addEventListener('click', () => {
-    // 处理按钮1的点击事件
-    console.log("Button 1 clicked");
+    if (button3) {
+        button3.addEventListener('click', function(event) {
+            toggleDropdown('dropdown3', event);
+        });
+    }
+
+    if (button5) {
+        button5.addEventListener('click', function(event) {
+            toggleDropdown('dropdown5', event);
+        });
+    }
+
+    // 点击页面其他地方关闭所有下拉菜单
+    window.onclick = function(event) {
+        if (!event.target.matches('#button3') && !event.target.matches('#button5')) {
+            closeAllDropdowns();
+        }
+    };
 });
 
-button2.addEventListener('click', () => {
-    // 处理按钮2的点击事件
-    console.log("Button 2 clicked");
-});
+// 显示或隐藏指定的下拉框
+function toggleDropdown(dropdownId, event) {
+    event.stopPropagation();
+    closeAllDropdowns();
+    const dropdown = document.getElementById(dropdownId);
+    const button = event.target;
 
-button3.addEventListener('click', () => {
-    // 处理按钮3的点击事件
-    console.log("Button 3 clicked");
-});
+    // 获取按钮的位置和尺寸
+    const rect = button.getBoundingClientRect();
 
-button4.addEventListener('click', () => {
-    // 处理按钮4的点击事件
-    console.log("Button 4 clicked");
-});
+    // 设置下拉框位置
+    dropdown.style.left = `${rect.left}px`;
+    dropdown.style.top = `${rect.bottom}px`;
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
 
-button5.addEventListener('click', () => {
-    // 处理按钮5的点击事件
-    console.log("Button 5 clicked");
-});
+// 关闭所有下拉框
+function closeAllDropdowns() {
+    const dropdowns = document.getElementsByClassName('dropdown');
+    for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].style.display = 'none';
+    }
+}
 
-// 切换侧边栏的显示/隐藏状态
+// 读取CSV文件的函数
+function readCSV() {
+    // 触发文件选择对话框
+    const fileInput = document.getElementById('fileInput');
+    fileInput.click();
+
+    // 监听文件选择
+    fileInput.onchange = function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                csvData = e.target.result;
+                console.log(csvData);  // 输出CSV内容到控制台
+            };
+            reader.readAsText(file);
+        } 
+    };
+}
+
+// 切换侧边栏的显示与隐藏
 function toggleSidebar(sidebarId) {
     const sidebar = document.getElementById(sidebarId);
-    sidebar.classList.toggle('closed');
+    sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
 }
